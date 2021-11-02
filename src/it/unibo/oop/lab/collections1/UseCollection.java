@@ -1,10 +1,21 @@
 package it.unibo.oop.lab.collections1;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Example class using {@link java.util.List} and {@link java.util.Map}.
  * 
  */
 public final class UseCollection {
+	
+	private static final int FROM_NUM = 1000;
+	private static final int TO_NUM = 2000;
+	
+	private static final int ELEM = 102_000;
+	private static final int TO_MS = 1_000_000;
 
     private UseCollection() {
     }
@@ -18,19 +29,41 @@ public final class UseCollection {
          * 1) Create a new ArrayList<Integer>, and populate it with the numbers
          * from 1000 (included) to 2000 (excluded).
          */
+    	
+    	ArrayList<Integer> list = new ArrayList<>();
+    	
+    	for(int i = FROM_NUM; i < TO_NUM; i++) {
+    		list.add(i);
+    	}
+    	
         /*
          * 2) Create a new LinkedList<Integer> and, in a single line of code
          * without using any looping construct (for, while), populate it with
          * the same contents of the list of point 1.
          */
+    	
+    	LinkedList<Integer> list2 = new LinkedList<>();
+    	list2.addAll(list);
+    	
         /*
          * 3) Using "set" and "get" and "size" methods, swap the first and last
          * element of the first list. You can not use any "magic number".
          * (Suggestion: use a temporary variable)
          */
+    	
+    	int v = list.get(0);
+    	list.remove(0);
+    	list.set(0, list.size());
+    	list.set(list.size() -1, v);
+    	
         /*
          * 4) Using a single for-each, print the contents of the arraylist.
          */
+    	
+    	for(int i : list) {
+    		System.out.println(i);
+    	}
+    	
         /*
          * 5) Measure the performance of inserting new elements in the head of
          * the collection: measure the time required to add 100.000 elements as
@@ -38,6 +71,28 @@ public final class UseCollection {
          * using the previous lists. In order to measure times, use as example
          * TestPerformance.java.
          */
+    	
+    	long time = System.nanoTime();
+    	
+    	for(int i = TO_NUM ; i <= ELEM ; i++) {
+    		list.add(i);
+    	}
+    	
+    	time = System.nanoTime() - time;
+    	
+    	System.out.println("Per inserire 100k elementi nella lista, ci ha impiegato "
+    						+ time/TO_MS + " ms");
+    	
+    	time = System.nanoTime();
+    	for(int i = TO_NUM; i <= ELEM; i++) {
+    		list2.add(i);
+    	}
+    	
+    	time = System.nanoTime() - time;
+    	
+    	System.out.println("Per inserire 100k elementi nella lista, ci ha impiegato "
+				+ time/TO_MS + " ms");
+    	
         /*
          * 6) Measure the performance of reading 1000 times an element whose
          * position is in the middle of the collection for both ArrayList and
