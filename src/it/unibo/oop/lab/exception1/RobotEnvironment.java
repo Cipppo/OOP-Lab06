@@ -47,6 +47,17 @@ public class RobotEnvironment {
      *         only inside the environment's boundaries)
      */
     public boolean move(final int newX, final int newY) {
+    	
+    	try {
+    		this.position.setX(newX);
+    		this.position.setY(newY);
+    	}catch(PositionOutOfBoundException e){
+    		System.out.println(e);
+    	}
+
+    	return true;
+    	
+    	/*
         if (newX >= RobotEnvironment.WORLD_X_LOWER_LIMIT
                 && newX <= RobotEnvironment.WORLD_X_UPPER_LIMIT
                 && newY >= RobotEnvironment.WORLD_Y_LOWER_LIMIT
@@ -57,6 +68,8 @@ public class RobotEnvironment {
         } else {
             return false;
         }
+        */
+        
     }
 
     /**
