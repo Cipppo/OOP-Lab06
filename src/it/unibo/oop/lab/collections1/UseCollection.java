@@ -1,6 +1,7 @@
 package it.unibo.oop.lab.collections1;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -99,6 +100,18 @@ public final class UseCollection {
          * LinkedList, using the collections of point 5. In order to measure
          * times, use as example TestPerformance.java.
          */
+    	
+    	time = System.nanoTime();
+    	
+    	for(int i = 0; i < TO_NUM; i++) {
+    		list.get(list.size() / 2);
+    	}
+    	
+    	time = System.nanoTime() - time;
+
+    	System.out.println("Per inserire 100k elementi nella lista, ci ha impiegato "
+				+ time/TO_MS + " ms");
+    	
         /*
          * 7) Build a new Map that associates to each continent's name its
          * population:
@@ -118,5 +131,21 @@ public final class UseCollection {
         /*
          * 8) Compute the population of the world
          */
+    	
+    	Map<String, Number> map = new HashMap<>();
+    	map.put("Africa", 1_110_635_000);
+    	map.put("America", 972_005_000);
+    	map.put("Antartica", 0);
+    	map.put("Asia", 4_298_723_000L);
+    	map.put("Europe", 742_452_000);
+    	map.put("Oceania", 38_304_000);
+    	
+    	long population = 0;
+    	
+    	for(String i : map.keySet()) {
+    		population = population + map.get(i).longValue();
+    	}
+    	
+    	System.out.println("The current world population is: " + population + " people");
     }
 }
