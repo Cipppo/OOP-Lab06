@@ -2,6 +2,8 @@ package it.unibo.oop.lab.collections2;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -75,8 +77,16 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements S
     @Override
     public boolean addFollowedUser(final String circle, final U user) {
     	
-    	this.followings.put(circle, user);
-    	
+    	if(this.followings.containsKey(circle)) {
+    		
+	    	Collection<U> raw = new HashSet<>();	//Create the buffer for the followings
+	    	raw.addAll(this.getFollowedUsersInGroup(circle));	//Add the followed people of the user U
+	    	this.followings.remove(circle);				//Remove the Entry circle
+	    	raw.add(user);										//Add the new following in the buffer
+	    	this.followings.put(circle, raw);
+	    	
+	    	return true;
+    	}
         return false;
     }
 
