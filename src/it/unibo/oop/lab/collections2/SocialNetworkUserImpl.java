@@ -32,7 +32,7 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements S
      * think of what type of keys and values would best suit the requirements
      */
 	
-	 private Map<User, List<User>> followings = new HashMap<>();
+	 private Map<String, Collection<U>> followings = new HashMap<>();
 
     /*
      * [CONSTRUCTORS]
@@ -74,12 +74,15 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements S
 
     @Override
     public boolean addFollowedUser(final String circle, final U user) {
+    	
+    	this.followings.put(circle, user);
+    	
         return false;
     }
 
     @Override
     public Collection<U> getFollowedUsersInGroup(final String groupName) {
-        return null;
+        return this.followings.get(groupName);
     }
 
     @Override
