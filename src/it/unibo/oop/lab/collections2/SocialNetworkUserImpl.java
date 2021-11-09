@@ -93,7 +93,11 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements S
 
     @Override
     public Collection<U> getFollowedUsersInGroup(final String groupName) {
-        return this.followings.get(groupName);
+    	if(this.followings.containsKey(groupName)) {
+    		return this.followings.get(groupName);    		
+    	}else {
+    		return new ArrayList<U>();
+    	}
     }
 
     @Override
