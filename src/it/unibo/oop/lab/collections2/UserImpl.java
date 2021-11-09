@@ -29,6 +29,7 @@ public class UserImpl implements User {
      *            alias of the user, i.e. the way a user is identified on an
      *            application
      */
+    //If the age is not given
     public UserImpl(final String name, final String surname, final String user) {
         this(name, surname, user, -1);
     }
