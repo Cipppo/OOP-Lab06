@@ -5,10 +5,10 @@ public class notEnoughFoundsException extends RuntimeException{
 	
 	private static final long serialVersionUID = 1L;
 
-	private final int arg;
+	private final double arg;
 	
-	public notEnoughFoundsException(int arg) {
-		this.arg = arg;
+	public notEnoughFoundsException(double amount) {
+		this.arg = amount;
 	}
 	
 	public String toString() {
