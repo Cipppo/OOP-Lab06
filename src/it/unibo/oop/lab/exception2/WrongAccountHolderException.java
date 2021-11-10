@@ -6,10 +6,10 @@ public class WrongAccountHolderException extends RuntimeException{
 
 	private static final long serialVersionUID = 1L;
 	
-	private final String args;
+	private final int args;
 	
-	public WrongAccountHolderException(final String s, final String args) {
-		super(s);
+	public WrongAccountHolderException(final int args) {
+		super();
 		this.args = args;
 	}
 
