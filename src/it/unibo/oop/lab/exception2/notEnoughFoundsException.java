@@ -1,6 +1,6 @@
 package it.unibo.oop.lab.exception2;
 
-public class notEnoughFoundsException extends RuntimeException{
+public class notEnoughFoundsException extends IllegalStateException{
 
 	
 	private static final long serialVersionUID = 1L;

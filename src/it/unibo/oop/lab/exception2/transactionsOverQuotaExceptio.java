@@ -1,6 +1,6 @@
 package it.unibo.oop.lab.exception2;
 
-public class transactionsOverQuotaExceptio extends RuntimeException {
+public class transactionsOverQuotaExceptio extends IllegalStateException {
 
 
 	private static final long serialVersionUID = 1L;
