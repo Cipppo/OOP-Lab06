@@ -77,25 +77,20 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements S
 
     @Override
     public boolean addFollowedUser(final String circle, final U user) {
-    	
-    	if(this.followings.containsKey(circle)) {
     		
-	    	Collection<U> raw = new HashSet<>();	//Create the buffer for the followings
-	    	raw.addAll(this.getFollowedUsersInGroup(circle));	//Add the followed people of the user U
-	    	this.followings.remove(circle);				//Remove the Entry circle
-	    	raw.add(user);										//Add the new following in the buffer
-	    	this.followings.put(circle, raw);
-	    	
-	    	return true;
+    	Collection<U> raw = this.followings.get(circle);
+    	if(raw == null){
+    		raw = new HashSet<>();
+    		this.followings.put(circle, raw);
     	}
-        return false;
+    	return raw.add(user);
     }
 
     @Override
     public Collection<U> getFollowedUsersInGroup(final String groupName) {
-    	if(this.followings.containsKey(groupName)) {
-    		return this.followings.get(groupName);    		
-    	}else {
+    	if (this.followings.containsKey(groupName)) {
+    		return new ArrayList<>(this.followings.get(groupName));    		
+    	} else {
     		return new ArrayList<U>();
     	}
     }
